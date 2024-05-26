@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Display from "$lib/display.svelte";
+    import Clock from "$lib/Clock.svelte";
     export let data: any;
 </script>
 
-<Display {data} />
+<Clock {data} />

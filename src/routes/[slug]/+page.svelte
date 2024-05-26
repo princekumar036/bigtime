@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Display from '$lib/display.svelte';
+    import Clock from '$lib/Clock.svelte';
 </script>
 
-<Display data='' />
+<Clock data='' />
