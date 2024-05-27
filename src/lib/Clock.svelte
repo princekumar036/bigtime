@@ -48,7 +48,6 @@
             
     }
 
-    // console.log('tz:',timezone)
     let now:any
     if (timezone) {
         now = DateTime.now().setZone(timezone)
@@ -61,17 +60,17 @@
 
 {#if timezone}
 <div class="h-screen grid place-content-center text-center">
-    <div>Time in <span class="font-bold ">{cityName ? `${cityName}, ` : ''} {countryName}</span> now:</div>
+    <div class="mb-8">Time in <span class="font-bold ">{cityName ? `${cityName}, ` : ''} {countryName}</span> now:</div>
     <button class="cursor-pointer" on:click={() => format12H = !format12H}>
         {#if format12H}
-            <div class="font-RubikMono text-[13vw] my-8 md:text-[10vw]">
+            <div class="font-RubikMono text-[13vw] md:text-[10vw]">
                 {now.toFormat('h:mm:ss')}<span class="font-RubikMono text-[3vw]">{now.toFormat('a')}</span>
             </div>
         {:else}
-            <div class="font-RubikMono text-[13vw] my-8 md:text-[10vw]">{now.toFormat('HH:mm:ss')}</div>
+            <div class="font-RubikMono text-[13vw] md:text-[10vw]">{now.toFormat('HH:mm:ss')}</div>
         {/if}
     </button>
-    <div class="text-2xl md:text-3xl font-light">{now.toLocaleString(DateTime.DATE_HUGE)}</div>
+    <div class="mt-8 text-2xl md:text-3xl font-light">{now.toLocaleString(DateTime.DATE_HUGE)}</div>
 </div>
 {:else}
     <div class="h-screen grid place-content-center justify-self-center text-center">
@@ -83,16 +82,3 @@
         </a>
     </div>
 {/if}
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
-    * {
-        font-family: 'Rubik', sans-serif;
-    }
-
-    .font-RubikMono {
-        font-family: "Rubik Mono One", monospace;
-    }
-</style>

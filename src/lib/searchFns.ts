@@ -13,16 +13,16 @@ function search(query:string) {
     const countries = locationTimezone.getCountries()
         .filter(result => result.name.toLowerCase().includes(query))
         .slice(0, 2)
-        .map(country => ({ displayName: country.name, slug: country.name }))
+        .map(country => ({ displayName: country.name, slug: country.name.replace(/\s+/g, '-') }))
 
     const cities = locationTimezone.getLocations()
         .filter( result => result.city.toLowerCase().startsWith(query) )
         .slice(0, 2)
-        .map(city => ({ displayName: `${city.city}, ${city.country.name}`, slug: city.city }))
+        .map(city => ({ displayName: `${city.city}, ${city.country.name}`, slug: city.city.replace(/\s+/g, '-') }))
     
     if (iso) {
         results = [
-            { displayName: `${iso.name} (${iso.iso2})`, slug: iso.name },
+            { displayName: `${iso.name} (${iso.iso2})`, slug: iso.name.replace(/\s+/g, '-') },
             ...countries,
             ...cities
         ]

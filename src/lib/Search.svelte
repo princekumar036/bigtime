@@ -1,6 +1,7 @@
 <script lang="ts">
     import search from "$lib/searchFns";
     import { clickOutside } from "$lib/clickOutside.js";
+    // import { goto } from "$app/navigation";
 
     let query:string
     let inputElement:HTMLInputElement
@@ -41,7 +42,7 @@
     <ul bind:this={resultsElement} class="border-t hidden py-3">
         {#each results as result}
             <li class="my-1 py-1">
-                <a class="block w-full" href="/{result.slug.replace(/\s+/g, '-')}">{result.displayName}</a>
+                <a data-sveltekit-reload class="block w-full" href="/{result.slug}">{result.displayName}</a>
             </li>
         {/each}
     </ul>
