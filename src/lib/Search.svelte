@@ -1,7 +1,6 @@
 <script lang="ts">
     import search from "$lib/searchFns";
-    import { clickOutside } from "$lib/clickOutside.js";
-    // import { goto } from "$app/navigation";
+    import { clickOutside } from "$lib/clickOutside";
 
     let query:string
     let inputElement:HTMLInputElement
