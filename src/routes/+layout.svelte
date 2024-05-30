@@ -1,4 +1,3 @@
-
 <script lang="ts">
     import "../app.css";
     import { page } from '$app/stores';
@@ -18,6 +17,10 @@
         })
     }
 </script>
+
+<svelte:head>
+    <title>{city ? city : country} {is12H ? now.toFormat('h:mm a') : now.toFormat('HH:mm')}</title> 
+</svelte:head>
 
 <slot />
 
