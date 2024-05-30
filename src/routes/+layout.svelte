@@ -29,7 +29,7 @@
     <button class="cursor-pointer" on:click={() => is12H = !is12H}>
         <div class="font-RubikMono text-[13vw] md:text-[10vw]">
             {#if is12H}
-                {now.toFormat('h:mm:ss')}<span class="text-[3vw]">{now.toFormat('a')}</span>
+                {now.toFormat('h:mm:ss')}<span class="font-RubikMono text-[3vw]">{now.toFormat('a')}</span>
             {:else}
                 {now.toFormat('HH:mm:ss')}
             {/if}
