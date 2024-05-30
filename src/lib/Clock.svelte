@@ -76,7 +76,7 @@
     <div class="h-screen grid place-content-center justify-self-center text-center">
         <div class="font-RubikMono text-9xl">404</div>
         <div class="mb-10 text-7xl font-thin">Bad Timing</div>
-        <a href="/" class="max-w-sm py-2 px-5 rounded bg-slate-900 text-slate-300 dark:bg-slate-300 dark:text-slate-900">
+        <a href="/" class="max-w-sm py-2 px-5 rounded bg-slate-900 text-slate-300 ">
             To Good Times
             <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M22 8v2c2.206 0 4 1.794 4 4s-1.794 4-4 4H10v-5l-6 6l6 6v-5h12c3.309 0 6-2.691 6-6s-2.691-6-6-6"/></svg>
         </a>
