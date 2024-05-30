@@ -1,5 +1,5 @@
 <script lang="ts">
-    import search from "$lib/searchFns";
+    import search from "$lib/search";
     import { clickOutside } from "$lib/clickOutside";
 
     let query:string
