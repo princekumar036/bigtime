@@ -7,6 +7,15 @@ export default {
       fontFamily: {
         'RubikMono': ['Rubik Mono One', 'monospace'],
         'Rubik': ['Rubik', 'sans-serif'],
+      },
+      colors: {
+        'lbg': '#F8FFE5',
+        'lpm': '#22252C',
+        'lsc': '#44FF4E',
+
+        'dbg': '#22252C',
+        'dpm': '#44FF4E',
+        'dsc': '#F8FFE5',
       }
     },
   },

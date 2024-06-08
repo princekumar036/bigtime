@@ -18,7 +18,7 @@ function search(query:string) {
     const cities = locationTimezone.getLocations()
         .filter( result => result.city.toLowerCase().startsWith(query) )
         .slice(0, 2)
-        .map(city => ({ displayName: `${city.city}, ${city.country.name}`, slug: city.city.replace(/\s+/g, '-') }))
+        .map(city => ({ displayName: `${city.city}, ${city.country.iso2}`, slug: city.city.replace(/\s+/g, '-') }))
     
     if (iso) {
         results = [
