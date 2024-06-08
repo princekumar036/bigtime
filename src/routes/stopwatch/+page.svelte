@@ -1,13 +1,14 @@
 <script lang="ts">
     import { DateTime, Duration } from "luxon"
     import { onMount, onDestroy } from "svelte"
+    import { writable } from "svelte/store";
 
     let startTime: DateTime
     let timeLapsed: Duration = Duration.fromMillis(0)
     let running: boolean
     let interval: number
-    let stamps: Duration[] = []
-    let stampCount = 0
+    let stamps = writable<string[]>([])
+    let ol:HTMLOListElement
 
     function startPause() {
         if (!running) {
@@ -25,18 +26,16 @@
     function reset() {
         clearInterval(interval)
         timeLapsed = Duration.fromMillis(0)
+        stamps.set([])
         running = false
     }
 
-    let tyu = ''
     function timestamp() {
         if (running) {
-            stampCount++
-            stamps.push(timeLapsed)
-            console.log(stamps.map(s => s.toFormat('mm:ss.SSS')).join(' '))
+            stamps.update(currentStamps => [...currentStamps, timeLapsed.toFormat('mm:ss.SSS')])
+            ol.scroll({ top: ol.scrollHeight, behavior: 'smooth' })
         }
     }
-    $:tyu = stamps.map(s => s.toFormat('mm:ss.SSS')).join(' ')
 
     onMount(() => {
         document.addEventListener('keydown', (e) => {
@@ -51,7 +50,7 @@
     })
 </script>
 
-<div>Stamps: {tyu}</div>
+
 
 <div class="h-[90vh] grid place-content-center text-center">
     <div class="font-RubikMono text-[13vw] xl:text-[10vw]">
@@ -59,6 +58,18 @@
         --><span class="font-RubikMono">{timeLapsed.toFormat('mm:ss')}</span><!--
         --><span class="font-RubikMono text-[5vw] ml-3">{timeLapsed.toFormat('ss SSS').split(' ')[1]}</span>
     </div>
+
+    {#if $stamps.length > 0}
+    <div class="absolute top-4 right-4 text-sm">
+        <p class=" mb-2">Timestamps</p>
+        <ol class="max-h-40 overflow-y-scroll no-scrollbar italic" bind:this={ol}>
+            {#each $stamps as stamp, i}
+                <li class="list-none font-mono">#{(i+1).toLocaleString('en-US', {minimumIntegerDigits: 2})}&nbsp;&nbsp;&nbsp;&nbsp;{stamp}</li>
+            {/each}
+        </ol>
+    </div>
+    {/if}
+    
     <div class="absolute left-1/2 -translate-x-1/2 top-2/3 text-4xl flex justify-center align-center gap-10">
         <button on:click={reset} class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
