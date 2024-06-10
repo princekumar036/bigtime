@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Stopwatch</title> 
+</svelte:head>
+
 <script lang="ts">
     import { DateTime, Duration } from "luxon"
     import { onMount, onDestroy } from "svelte"
