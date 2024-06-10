@@ -1,7 +1,10 @@
+<script lang="ts">
+    import { page } from "$app/stores";
+</script>
 
 <div class="fixed bottom-0 w-full bg-lpm text-lbg dark:bg-dpm dark:text-dbg text-3xl md:text-4xl 2xl:text-5xl rounded-md">
     <div class="container mx-auto flex md:gap-10">
-        <a href="/clock" class="flex-grow flex flex-col flex-col-reverse items-center py-2 ">
+        <a href="/clock" class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname === '/clock' ? 'bg-lsc dark:bg-dsc rounded-md shadow-md' : ''}">
             <span class="text-sm">Clock</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -10,7 +13,7 @@
                 </g>
             </svg>
         </a>
-        <a href="/timer" class="flex-grow flex flex-col flex-col-reverse items-center py-2 ">
+        <a href="/timer" class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname === '/timer' ? 'bg-lsc dark:bg-dsc rounded-md shadow-md' : ''}">
             <span class="text-sm">Timer</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <g fill="none" fill-rule="evenodd">
@@ -19,7 +22,7 @@
                 </g>
             </svg>
         </a>
-        <a href="/stopwatch" class="flex-grow flex flex-col flex-col-reverse items-center py-2 ">
+        <a href="/stopwatch" class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname === '/stopwatch' ? 'bg-lsc dark:bg-dsc rounded-md shadow-md' : ''}">
             <span class="text-sm">Stopwatch</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <g fill="none">
@@ -28,7 +31,7 @@
                 </g>
             </svg>
         </a>
-        <a href="/pomodoro" class="flex-grow flex flex-col flex-col-reverse items-center py-2 ">
+        <a href="/pomodoro" class="flex-grow flex flex-col-reverse items-center py-2 {$page.url.pathname === '/pomodoro' ? 'bg-lsc dark:bg-dsc rounded-md shadow-md' : ''}">
             <span class="text-sm">Pomodoro</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
                 <path fill="currentColor" d="M16.99 6a1 1 0 1 0-2 0v2.99h-.938A5.646 5.646 0 0 0 9.74 7H3.98a5.64 5.64 0 0 0 1.663 4.01A10.987 10.987 0 0 0 1 19.99c0 6.083 4.928 11 11 11h7.96c6.083 0 11-4.928 11-11a10.967 10.967 0 0 0-4.647-8.986A5.642 5.642 0 0 0 27.97 7h-5.76a5.646 5.646 0 0 0-4.312 1.99h-.908zM6.054 13.232a5.666 5.666 0 0 0-.304 1.838h5.77a5.646 5.646 0 0 0 4.468-2.187a5.648 5.648 0 0 0 4.472 2.187h5.76c0-.642-.107-1.259-.305-1.835a8.957 8.957 0 0 1 3.045 6.753v.002c0 4.968-4.023 9-9 9H12c-4.968 0-9-4.023-9-9a8.98 8.98 0 0 1 3.054-6.758" />
@@ -36,3 +39,9 @@
         </a>
     </div>
 </div>
+
+<style>
+    .active {
+        background-color: white;
+    }
+</style>

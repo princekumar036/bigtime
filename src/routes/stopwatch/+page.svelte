@@ -6,6 +6,8 @@
     import { DateTime, Duration } from "luxon"
     import { onMount, onDestroy } from "svelte"
     import { writable } from "svelte/store";
+    import { page } from "$app/stores";
+    console.log($page)
 
     let startTime: DateTime
     let timeLapsed: Duration = Duration.fromMillis(0)
