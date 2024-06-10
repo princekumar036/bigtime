@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Stopwatch</title> 
+    <title>Stopwatch {timeLapsed.as('seconds') > 0 ? timeLapsed.toFormat('mm:ss.SSS') : ''}</title> 
 </svelte:head>
 
 <script lang="ts">
@@ -13,6 +13,7 @@
     let interval: number
     let stamps = writable<string[]>([])
     let ol:HTMLOListElement
+    let message:HTMLDivElement
 
     function startPause() {
         if (!running) {
@@ -57,6 +58,9 @@
 
 
 <div class="h-[90vh] grid place-content-center text-center">
+
+    <div bind:this={message}>Hit Play Button to Start Stopwatch</div>
+
     <div class="font-RubikMono text-[13vw] xl:text-[10vw]">
         {timeLapsed.hours > 0 ? timeLapsed.toFormat('h:') : ''}<!--
         --><span class="font-RubikMono">{timeLapsed.toFormat('mm:ss')}</span><!--

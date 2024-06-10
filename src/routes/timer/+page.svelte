@@ -1,3 +1,6 @@
+<svelte:head>
+    <title>Timer</title> 
+</svelte:head>
 
 <script lang="ts">
     import { Duration } from "luxon";
@@ -27,25 +30,27 @@
 
     // START OR PAUSE BUTTON
     function startPause() {
-        started = true                                  // FIRST CLICK STARTS THE TIMER
-        message.innerHTML = 'Timer Started'
-        if (!running && timer.as('seconds') > 0) {      // 
-            running = true
-            intervalId = setInterval(() => {            // TICKER
-                if (timer.as('seconds') === 0) {
-                    reset()                             // RESET WHEN TIMER === 0
-                    message.innerHTML = 'Timer Ended'
-                }
-                else {
-                    timer = timer.minus(1000)
-                }
-            }, 1000)
-            
-        }
-        else {                                          // SUBSEQUENT CLICKS PAUSES THE TIMER
-            running = false
-            clearInterval(intervalId)
-            message.innerHTML = 'Timer Paused'
+        if (timer.as('seconds') > 0) {
+            started = true                                  // FIRST CLICK STARTS THE TIMER
+            message.innerHTML = 'Timer Started'
+            if (!running && timer.as('seconds') > 0) {      // 
+                running = true
+                intervalId = setInterval(() => {            // TICKER
+                    if (timer.as('seconds') === 0) {
+                        reset()                             // RESET WHEN TIMER === 0
+                        message.innerHTML = 'Timer Ended'
+                    }
+                    else {
+                        timer = timer.minus(1000)
+                    }
+                }, 1000)
+                
+            }
+            else {                                          // SUBSEQUENT CLICKS PAUSES THE TIMER
+                running = false
+                clearInterval(intervalId)
+                message.innerHTML = 'Timer Paused'
+            }
         }
     }
 
@@ -76,7 +81,7 @@
                 <path fill="currentColor" d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219a9.053 9.053 0 0 0-2.43-2.43a8.95 8.95 0 0 0-3.219-1.355a9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053a7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725a7.11 7.11 0 0 1-.644 1.188a7.2 7.2 0 0 1-.858 1.039a7.028 7.028 0 0 1-3.536 1.907a7.13 7.13 0 0 1-2.822 0a6.961 6.961 0 0 1-2.503-1.054a7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034a9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183a9.014 9.014 0 0 0 3.218-1.355a8.886 8.886 0 0 0 1.331-1.099a9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814" />
             </svg>
         </button>
-        <button class="text-8xl" on:click={startPause}>
+        <button class="text-8xl {timer.as('seconds') > 0 ? 'cursor-pointer' : 'cursor-not-allowed'}" on:click={startPause}>
             {#if running}
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
                     <path fill="currentColor" fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0M5.5 5.5A.5.5 0 0 1 6 5h.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5zm4-.5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5v-5A.5.5 0 0 0 10 5z" clip-rule="evenodd" />

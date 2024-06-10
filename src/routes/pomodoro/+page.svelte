@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Pomodoro</title> 
+</svelte:head>
+
 <script lang="ts">
     import { Duration } from "luxon";
 
