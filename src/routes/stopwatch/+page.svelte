@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Stopwatch {timeLapsed.as('seconds') > 0 ? timeLapsed.toFormat('mm:ss.SSS') : ''}</title> 
+    <title>Stopwatch</title> 
 </svelte:head>
 
 <script lang="ts">
@@ -22,9 +22,11 @@
                 timeLapsed = DateTime.now().diff(startTime)
             }, 10)
             running = true
+            message.innerHTML = 'Running...'
         } else {
             clearInterval(interval)
             running = false
+            message.innerHTML = 'Paused'
         }
     }
 
@@ -33,6 +35,7 @@
         timeLapsed = Duration.fromMillis(0)
         stamps.set([])
         running = false
+        message.innerHTML = 'Hit Play Button to Start Stopwatch'
     }
 
     function timestamp() {
@@ -42,13 +45,13 @@
         }
     }
 
-    onMount(() => {
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
-                startPause()
-            }
-        })
-    })
+    // onMount(() => {
+    //     document.addEventListener('keydown', (e) => {
+    //         if (e.code === 'Space') {
+    //             startPause()
+    //         }
+    //     })
+    // })
 
     onDestroy(() => {
         clearInterval(interval)
@@ -62,7 +65,7 @@
     <div bind:this={message}>Hit Play Button to Start Stopwatch</div>
 
     <div class="font-RubikMono text-[13vw] xl:text-[10vw]">
-        {timeLapsed.hours > 0 ? timeLapsed.toFormat('h:') : ''}<!--
+        {timeLapsed.hours > 0 ? timeLapsed.get('hour') : ''}<!--
         --><span class="font-RubikMono">{timeLapsed.toFormat('mm:ss')}</span><!--
         --><span class="font-RubikMono text-[5vw] ml-3">{timeLapsed.toFormat('ss SSS').split(' ')[1]}</span>
     </div>
