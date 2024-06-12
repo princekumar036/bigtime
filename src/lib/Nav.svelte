@@ -39,9 +39,3 @@
         </a>
     </div>
 </div>
-
-<style>
-    .active {
-        background-color: white;
-    }
-</style>
